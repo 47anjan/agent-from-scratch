@@ -2,6 +2,7 @@ import type OpenAI from 'openai'
 import { generateImage } from './tools/generateImage'
 import { dadJoke } from './tools/dadJoke'
 import { reddit } from './tools/reddit'
+import { github } from './tools/githubTool'
 
 export const runTool = async (
   toolCall: OpenAI.Chat.Completions.ChatCompletionMessageToolCall,
@@ -21,6 +22,9 @@ export const runTool = async (
 
     case 'reddit':
       return reddit(input)
+
+    case 'github':
+      return github(input)
 
     default:
       throw new Error(`Unknown tool: ${toolCall.function.name}`)
